@@ -10,20 +10,14 @@ $boardData = $_POST['board_data'];
 
 if (!empty($boardName)) {
     $boardFilename = urlencode(str_replace(' ', '_', strtolower($boardName))) . '.json';
-    $boardJson     = sprintf('{ "name": "%s", "data": %s }', $boardName, $boardData);
-
-    $freeboard->setBoard($boardJson);
 } else {
     $boardFilename = $_POST['board_file'];
     $freeboard->setBoard($boardFilename);
     $boardName = $freeboard->getBoard()->getName();
 }
 
-$board = sprintf(
-    '{ "name": "%s", "data": %s }',
-    $boardName,
-    $boardData
-);
+$boardJson = sprintf('{ "name": "%s", "data": %s }', $boardName, $boardData);
+$freeboard->setBoard($boardJson);
 
 if ($freeboard->getBoard()->save($boardFilename)) {
     echo sprintf('{ "response": "success", "board_file": "%s" }', $boardFilename);

@@ -116,13 +116,15 @@ class Freeboard
         }
 
         foreach ($boardFiles AS $boardFile) {
-            $board = new Board();
-            $board->setBoardByFile($boardFile);
+            if (strpos($boardFile->getFilename(), '.json') !== false) {
+                $board = new Board();
+                $board->setBoardByFile($boardFile);
 
-            $boards[] = array(
-                'file' => $boardFile->getFilename(),
-                'name' => $board->getName()
-            );
+                $boards[] = array(
+                    'file' => $boardFile->getFilename(),
+                    'name' => $board->getName()
+                );
+            }
         }
 
         $this->_boardList = $boards;

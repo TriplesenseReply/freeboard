@@ -563,7 +563,7 @@ function FreeboardModel(datasourcePlugins, widgetPlugins, freeboardUI)
                     alert('Board was saved to file "' + json['board_file'] + '". Have a nice day!');
 
                     if (json['board_file'] != getParam['board']) {
-                        //location.href = '/detail.php?board=' + json['board_file'];
+                        location.href = '/detail.php?board=' + json['board_file'];
                     }
                 }).fail(function (jqXHR, textstatus, errorThrown) {
                     alert('Board could not be saved. Please check your permissions or contact an administrator.');
